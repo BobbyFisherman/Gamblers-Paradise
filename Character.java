@@ -1,5 +1,4 @@
 
-
 public class Character{
   int players;
   String Name;

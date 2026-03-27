@@ -1,101 +1,222 @@
+html,
 body {
-        background-color: black;
-        margin: 0;
-      }
+  margin: 0;
+  min-height: 100vh;
+}
 
-      h1 {
-        color: white;
-        font-size: 6em;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        margin: 0;
-        padding-left: 30%;
-        padding-top: 3px;
-        font-family: "Luckiest Guy", cursive;
-      }
+body {
+  background-image: url("photos/wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
 
-      .docker {
-        position: relative;
-        width: 100%;
-        height: 150px;
-        background-color: rgba(128, 128, 128, 0.757);
-      }
+  background-image: url("photos/wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-      .motto {
-        color: white;
-        font-size: 1.7em;
-        text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.7);
-        font-family: "Dancing Script";
-        position: absolute;
-        top: 80px;
-        left: 57%;
-      }
+  filter: blur(.5px);
+  transform: scale(1.05);
+}
 
-        .poker button {
-        position: absolute;
-        font-size: 3em;
-        width: 500px;
-        height: 90px;
-        border-radius: 10px;
-        background-color: rgb(208, 106, 106);
-        color: black;
-        border: none;
-        top: 320px;
-        left: 20%;
-        z-index: 1;
-        overflow: hidden;
-        font-family: "Bold Fraktur";
-        border: 5px solid rgb(47, 80, 48);
-      }
+/* HEADER */
 
-      .blackjack button {
-        position: absolute;
-        font-size: 3em;
-        width: 500px;
-        height: 90px;
-        border-radius: 10px;
-        background-color: rgb(208, 106, 106);
-        color: rgb(0, 0, 0);
-        border: none;
-        top: 320px;
-        left: 54%;
-        z-index: 1;
-        overflow: hidden;
-        font-family: "Bold Fraktur";
-        border: 5px solid rgb(47, 80, 48);
-      }
+.docker {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background-color: rgb(128, 128, 128);
+}
 
-      .blackjack button::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("photos/blackjack.jpg");
-        background-size: cover;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-        background-position: center 20%;
-        z-index: -1;
-      }
+h1 {
+  color: white;
+  font-size: 6em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin: 0;
+  padding-left: 30%;
+  padding-top: 3px;
+  font-family: "Luckiest Guy", cursive;
+}
 
-      .poker button::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("photos/pokertable.webp");
-        background-size: cover;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-        background-position: center 40%;
-        z-index: -1;
-        
-      }
+.motto {
+  color: white;
+  font-size: 1.7em;
+  text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.7);
+  font-family: "Dancing Script";
+  position: absolute;
+  top: 80px;
+  left: 57%;
+}
 
-      .poker button:hover::after,
-      .blackjack button:hover::after {
-        opacity: 0.5;
-      }
+
+/* BUTTON CONTAINERS */
+
+.poker,
+.blackjack {
+  position: absolute;
+  top: 320px;
+  width: 500px;
+  height: 90px;
+  overflow: visible;
+}
+
+.poker {
+  left: 20%;
+}
+
+.blackjack {
+  left: 54%;
+}
+
+.poker button,
+.blackjack button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 3em;
+  font-family: "Bold Fraktur";
+  color: black;
+  border-radius: 14px;
+  border: 5px solid rgb(47, 80, 48);
+  background: rgb(225, 55, 55);
+  cursor: pointer;
+  overflow: visible;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(0);
+  transition:
+    height 0.5s ease,
+    transform 0.5s ease,
+    border-radius 0.5s ease,
+    border-color 0.3s ease;
+}
+
+.poker button:hover,
+.blackjack button:hover {
+  height: 500px;
+  transform: translateY(-102.5px);
+  border-radius: 14px;
+  border-color: transparent;
+}
+
+/* BUTTON TEXT */
+
+.poker button span,
+.blackjack button span {
+  position: relative;
+  z-index: 4;
+  display: inline-block;
+  color: black;
+
+  transition:
+    transform 0.5s ease,
+    text-shadow 0.5s ease,
+    color 1s ease;
+}
+
+.poker button:hover span,
+.blackjack button:hover span {
+  color: white;
+
+  transform: scale(1.7);
+
+  text-shadow:
+    0 0 8px rgba(255, 0, 0, 0.9),
+    0 0 16px rgba(0, 255, 0, 0.9);
+}
+
+
+
+.poker button::after,
+.blackjack button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9px;
+  z-index: 1;
+  opacity: 0;
+
+  transition: opacity 1.5s ease;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.poker button::after {
+  background-image:
+    linear-gradient(rgba(170, 0, 0, 0.28), rgba(170, 0, 0, 0.28)),
+    url("photos/pokertable.webp");
+}
+
+.blackjack button::after {
+  background-image:
+    linear-gradient(rgba(170, 0, 0, 0.28), rgba(170, 0, 0, 0.28)),
+    url("photos/blackjack.jpg");
+}
+
+.poker button:hover::after,
+.blackjack button:hover::after {
+  opacity: 1;
+}
+
+
+/* NEON GLOW */
+
+@property --glow-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.poker button::before,
+.blackjack button::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  border-radius: 20px;
+  z-index: 0;
+  pointer-events: none;
+
+  background: conic-gradient(
+    from var(--glow-angle),
+    rgba(255, 0, 0, 0.95) 0deg,
+    rgba(255, 0, 0, 0.95) 70deg,
+    rgba(0, 255, 0, 0.95) 140deg,
+    rgba(255, 0, 0, 0.95) 210deg,
+    rgba(0, 255, 0, 0.95) 290deg,
+    rgba(255, 0, 0, 0.95) 360deg
+  );
+
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity 0.35s ease 0.3s;
+}
+
+.poker button:hover::before,
+.blackjack button:hover::before {
+  opacity: 0.9;
+  animation: neonFlow 1.5s linear infinite;
+}
+
+@keyframes neonFlow {
+  from {
+    --glow-angle: 0deg;
+  }
+  to {
+    --glow-angle: 360deg;
+  }
+}
